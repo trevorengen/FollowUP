@@ -13,29 +13,8 @@
 
 import customer_class
 import sqlite3
-
-# Database setup for sqlite3 to store customer data
-# from different uses of the program
-connection = sqlite3.connect('customerTable.db')
-crsr = connection.cursor()
-sql_command = """CREATE TABLE emp (
-cust_name VARCHAR(30),
-phone_num VARCHAR(20),
-purchase VARCHAR(100),
-del_date DATE);"""
-
-
-# Function to allow new customer information
-def input_new():
-	name = input('Enter customers full name.\n')
-	phone = input('Enter customers phone number.\n')
-	purchase = input('Enter product purchased.\n')
-	date = input('Enter date to be delivered OR if take with purchased date.\n')
-
-	# Now creating the customer class instance and appending it to the customer database.
-	sql_command = """INSERT INTO emp (cust_name, phone_num, purchase, del_date) VALUES (?, ?, ?, ?);"""
-	crsr.execute(sql_command, (name, phone, purchase, date))
-	connection.commit()
+from Add_Remove import input_new, remove_cust
+from db_strut import *
 
 
 # A while loop to keep the program running until the 
@@ -65,19 +44,17 @@ while key == True:
 		pass
 	
 	elif inp == '3':
-		n = 1
 		crsr.execute("SELECT * FROM emp")
 		ans = crsr.fetchall()
 		for i in ans:
-			print('\nCustomer ' + str(n) + ':')
 			print(i)
 			print('\n')
-			n += 1
 
 	elif inp == '4':
-		chosen = input('Enter customer # from print customer screen\n')
-		deli = crsr.execute("DELETE ? FROM emp")
-		crsr.execute(deli, chosen)
+		remove_cust()
+
+	elif inp == '5':
+		pass
 
 
 
