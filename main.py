@@ -1,6 +1,6 @@
 """ 
 	My first program I built in order to help me keep 
-	my follow up on point while working at my sales
+	ontop of my follow up while working at my sales
 	job. Functionality is basic but will alert you
 	when a certain amount of time has passed so that
 	you can follow up with a customer to ensure that
@@ -13,7 +13,7 @@
 
 import customer_class
 import sqlite3
-from Add_Remove import input_new, remove_cust
+from Add_Remove import input_new, remove_cust, follow_up
 from db_strut import *
 
 
@@ -39,9 +39,8 @@ while key == True:
 		input_new()
 	
 	elif inp == '2':
-		# Add a date checker to see if the input amount of 
-		# time has passed since a delivery date.
-		pass
+		follow_up()
+		
 	
 	elif inp == '3':
 		crsr.execute("SELECT * FROM emp")
