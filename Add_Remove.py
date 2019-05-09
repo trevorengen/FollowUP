@@ -51,7 +51,7 @@ def follow_up():
 				# Changes the delivery date in SQL into a proper
 				# date time object then adds 14 days and checks
 				# if today is past that date. If so
-				# TODO informs user to check up with the customer.
+				# informs user to check up with the customer.
 				non_tup = str(cust_date)
 				cust_del_date = datetime.strptime(non_tup, "('%m-%d-%Y',)").date()			
 				followup_date = cust_del_date + timedelta(days=14)
